@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天雨音频 - 专业音频资源库</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a8a5e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        body {
+            background: #0f0f12;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            padding: 1.5rem;
+            position: fixed;
+            width: 100%;
+            background: rgba(15, 15, 18, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 1rem;
+        }
+
+        /* 动态频谱 */
+        .visualizer {
+            height: 150px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .bar {
+            position: absolute;
+            bottom: 0;
+            width: 4px;
+            background: #fff;
+            animation: spectrum 1.4s ease-in-out infinite;
+        }
+
+        @keyframes spectrum {
+            0%, 100% { height: 20%; }
+            50% { height: 80%; }
+        }
+
+        /* 插件网格 */
+        .plugin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 6rem 2rem 2rem;
+        }
+
+        /* 插件卡片 */
+        .plugin-card {
+            background: #1a1a1f;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: cardEntry 0.6s forwards;
+            transition: 0.3s ease;
+        }
+
+        .plugin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes cardEntry {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 下载按钮 */
+        .download-btn {
+            background: var(--primary-color);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn:hover {
+            background: #5b4bc4;
+            transform: scale(1.05);
+        }
+
+        /* 辅助样式 */
+        .tag {
+            background: rgba(255,255,255,0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .plugin-card h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .plugin-card p {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+        }
+
+        /* 波纹效果 */
+        .ripple:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            animation: ripple 0.6s ease-out;
+        }
+
+        @keyframes ripple {
+            from {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(20);
+                opacity: 0;
+            }
+        }
+
+a {
+text-decoration: none;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🎚️ 天雨音频 - 专业音频资源库</h1>
+    </nav>
+
+    <main>
+        <div class="plugin-grid">
+            <!-- 插件示例1 -->
+            <div class="plugin-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <i class="fas fa-equalizer" style="font-size: 2rem; color: #6c5ce7;"></i>
+                    <h2>调音师工具箱 新</h2>
+                </div>
+                <p></p>
+                <div class="specs">
+                    <div style="display: flex; gap: 0.5rem; margin: 1rem 0;">
+                    </div>
+                </div>
+                <button class="download-btn ripple">
+                    <a href="https://www.123865.com/s/44I1jv-vmwhd"><i class="fas fa-download"></i>
+                    立即下载</a>
+                </button>
+            </div>
+
+            <!-- 插件示例2 -->
+            <div class="plugin-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <i class="fas fa-wave-square" style="font-size: 2rem; color: #ff7675;"></i>
+                    <h2>Wave Shaper X</h2>
+                </div>
+                <p>高级波形塑形工具，带智能谐波生成功能</p>
+                <div class="specs">
+                    <div style="display: flex; gap: 0.5rem; margin: 1rem 0;">
+                        <span class="tag">VST3/AAX</span>
+                        <span class="tag">M1优化</span>
+                        <span class="tag">多核加速</span>
+                    </div>
+                    <p>版本：1.0.8 | 大小：48MB</p>
+                </div>
+                <button class="download-btn ripple">
+                    <i class="fas fa-download"></i>
+                    立即下载
+                </button>
+            </div>
+
+            <!-- 更多插件卡片可在此添加 -->
+        </div>
+    </main>
+
+    <script>
+        // 滚动导航栏效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if(window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 卡片入场动画
+        const cards = document.querySelectorAll('.plugin-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => observer.observe(card));
+
+        // 按钮波纹效果
+        document.querySelectorAll('.ripple').forEach(button => {
+            button.addEventListener('click', function(e) {
+                let ripple = document.createElement('div');
+                ripple.className = 'ripple-effect';
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // 动态生成频谱条（可选）
+        function createBars() {
+            const visualizer = document.querySelector('.visualizer');
+            for(let i = 0; i < 12; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.style.left = `${(i * 7) + 10}%`;
+                bar.style.animationDelay = `${i * 0.1}s`;
+                visualizer.appendChild(bar);
+            }
+        }
+        createBars();
+    </script>
+</body>
+</html>
