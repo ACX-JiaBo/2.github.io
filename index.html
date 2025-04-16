@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+<script>
+// 自动防缓存脚本
+document.write(`<link rel="stylesheet" href="style.css?t=${new Date().getTime()}">`);
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -139,6 +143,12 @@
             });
         });
     </script>
+<script>
+// 动态加载JS文件
+const script = document.createElement('script');
+script.src = `your-scripts.js?t=${new Date().getTime()}`;
+document.body.appendChild(script);
+</script>
 </body>
 </html>
 
