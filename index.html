@@ -1,156 +1,418 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<script>
-// 自动防缓存脚本
-document.write(`<link rel="stylesheet" href="style.css?t=${new Date().getTime()}">`);
-</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TunerHub - 专业音频插件资源站</title>
+    <title>嘉博 - 天雨音频资源网</title>
     <style>
-        :root {
-            --primary: #2A9D8F;
-            --dark: #264653;
-            --light: #E9C46A;
+        /* 新增下载按钮样式 */
+        .download-btn {
+            position: relative;
+            background: rgba(20, 20, 20, 0.9);
+            border: none;
+            padding: 1rem 2.5rem;
+            color: var(--neon-primary);
+            border-radius: 50px;
+            margin-top: 2rem;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow: hidden;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 255, 136, 0.2);
         }
 
+        /* 流体背景效果 */
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 25%,
+                rgba(0, 255, 136, 0.1) 50%,
+                transparent 75%
+            );
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: 0.6s;
+        }
+
+        /* 悬停动效 */
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.15);
+        }
+
+        .download-btn:hover::before {
+            opacity: 1;
+            animation: fluidFlow 1.5s linear infinite;
+        }
+
+        /* 下载图标动画 */
+        .download-icon {
+            display: inline-block;
+            margin-left: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .download-btn:hover .download-icon {
+            transform: translateY(3px);
+            animation: downloadBounce 0.8s infinite;
+        }
+
+        /* 点击效果 */
+        .download-btn:active {
+            transform: scale(0.95);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        /* 进度加载动画 */
+        .download-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--neon-primary);
+            width: 0;
+            transition: width 3s linear;
+        }
+
+        @keyframes fluidFlow {
+            0% { transform: translateX(-50%) rotate(45deg); }
+            100% { transform: translateX(50%) rotate(45deg); }
+        }
+
+        @keyframes downloadBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        :root {
+            --neon-primary: #00ff88;
+            --neon-secondary: #00b4ff;
+            --bg-dark: #0a0a0a;
+            --text-primary: rgba(255,255,255,0.95);
+        }
+
+        /* 基础重置 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
         }
 
+        /* 字体设置 */
         body {
-            background: var(--dark);
-            color: white;
+            font-family: system-ui, -apple-system, 
+                       "Segoe UI", Roboto, "Helvetica Neue", 
+                       sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
         }
 
-        /* 加载动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* 粒子背景容器 */
+        .particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
         }
 
-        .container {
+        /* 现代导航栏 */
+        nav {
+            padding: 1.2rem 2rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.85);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
-            animation: fadeIn 0.8s ease-out;
         }
 
-        /* 动态导航栏 */
-        nav {
-            background: rgba(0,0,0,0.9);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* 卡片悬停动画 */
-        .plugin-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            transition: transform 0.3s ease;
-        }
-
-        .plugin-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* 下载按钮动画 */
-        .download-btn {
-            background: var(--primary);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            color: white;
-            cursor: pointer;
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 300;
             position: relative;
-            overflow: hidden;
+            padding: 0.5rem;
+            transition: 0.3s ease-out;
         }
 
-        .download-btn::after {
+        /* 导航栏悬停动画 */
+        .nav-links a::after {
             content: '';
             position: absolute;
-            top: 50%;
+            bottom: -3px;
             left: 50%;
             width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                var(--neon-primary), 
+                var(--neon-secondary));
+            transform: translateX(-50%);
+            transition: width 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        .download-btn:hover::after {
-            width: 200px;
-            height: 200px;
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 主内容区 */
+        main {
+            padding-top: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 语录区 */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .quote-container {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 2.5rem;
+            line-height: 1.4;
+            margin: 2rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textReveal 1s forwards;
+            background: linear-gradient(45deg, 
+                var(--neon-primary), 
+                var(--neon-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 资源卡片 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(20, 20, 20, 0.9);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.1);
+        }
+
+        /* 动画定义 */
+        @keyframes textReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
-            .plugin-grid {
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .quote {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                padding: 1rem;
+                -webkit-backdrop-filter: blur(6px);
+                backdrop-filter: blur(6px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-container {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <canvas class="particles-canvas"></canvas>
+
     <nav>
-        <div class="nav-content">
-            <h1>TunerHub</h1>
-            <div class="nav-links">
-                <a href="#plugins">插件库</a>
-                <a href="#about">关于</a>
-            </div>
+        <div class="nav-links">
+            <a href="#home" class="active">首页</a>
+            <a href="#plugins">资源区</a>
         </div>
     </nav>
 
-    <div class="container">
-        <section class="hero">
-            <h2>专业音频插件集合</h2>
-            <p>发现最适合您的音乐制作工具</p>
+    <main>
+        <section class="hero-section" id="home">
+            <div class="quote-container">
+                <h1 class="quote" style="animation-delay: 0.2s">「 方便自己也方便其他调音师的小破站 」</h1>
+            </div>
         </section>
 
-        <section id="plugins" class="plugin-grid">
-            <!-- 动态生成插件卡片 -->
-            <div class="plugin-card">
-                <h3>VocalTuner Pro</h3>
-                <p>专业人声调谐工具</p>
-                <button class="download-btn">下载</button>
+        <section id="plugins">
+            <div class="grid-container">
+                <div class="card">
+                    <h2>各声卡驱动</h2>
+                    <a href="https://www.123865.com/s/44I1jv-omwhd"><button class="download-btn">立即下载</button></a>
+                </div>
+                <div class="card">
+                    <h2>调音师工具箱</h2>
+                    <a href="https://www.123865.com/s/44I1jv-mmwhd"><button class="download-btn">立即下载</button></a>
+                </div>
+                <div class="card">
+                    <h2>杂项</h2>
+                    <a href="https://www.123865.com/s/44I1jv-1mwhd"><button class="download-btn">立即下载</button></a>
+                </div>
             </div>
-            <!-- 更多插件... -->
         </section>
-    </div>
+    </main>
 
     <script>
-        // 按钮点击动画
+        // 粒子背景初始化
+        const canvas = document.querySelector('.particles-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 2;
+                this.alpha = Math.random() * 0.5 + 0.1;
+                this.velocity = {
+                    x: (Math.random() - 0.5) * 0.3,
+                    y: (Math.random() - 0.5) * 0.3
+                };
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 255, 136, ${this.alpha})`;
+                ctx.fill();
+            }
+
+            update() {
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                
+                if (this.x < 0 || this.x > canvas.width || 
+                    this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+        }
+
+        // 粒子系统初始化
+        const particles = Array.from({ length: 80 }, () => new Particle());
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        // 窗口事件监听
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            particles.forEach(p => p.reset());
+        });
+
+        // 初始化
+        resizeCanvas();
+        animate();
+
+        // 语录轮换逻辑
+        const quotes = document.querySelectorAll('.quote');
+        let currentQuote = 0;
+
+        function rotateQuotes() {
+            quotes.forEach((quote, index) => {
+                quote.style.display = index === currentQuote ? 'block' : 'none';
+            });
+            currentQuote = (currentQuote + 1) % quotes.length;
+        }
+
+        // 初始设置
+        setTimeout(() => {
+            quotes[0].style.display = 'block';
+            setInterval(rotateQuotes, 5000);
+        }, 1000);
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            nav.style.background = window.scrollY > 50 
+                ? 'rgba(10, 10, 10, 0.95)' 
+                : 'rgba(10, 10, 10, 0.85)';
+        });
+
+        // 下载按钮交互
         document.querySelectorAll('.download-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                this.classList.add('clicked');
-                setTimeout(() => this.classList.remove('clicked'), 300);
+                // 模拟下载进度
+                const progress = this.querySelector('.download-progress');
+                progress.style.width = '100%';
+                
+                // 重置动画
+                setTimeout(() => {
+                    progress.style.width = '0';
+                    this.classList.add('download-complete');
+                    setTimeout(() => this.classList.remove('download-complete'), 2000);
+                }, 3000);
             });
         });
     </script>
-<script>
-// 动态加载JS文件
-const script = document.createElement('script');
-script.src = `your-scripts.js?t=${new Date().getTime()}`;
-document.body.appendChild(script);
-</script>
 </body>
 </html>
-
-<link rel="stylesheet" href="style.css?v=1.2">
-<script src="script.js?v=1.2"></script>
