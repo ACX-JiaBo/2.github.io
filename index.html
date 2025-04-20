@@ -3,8 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>嘉博 - 天雨音频资源网</title>
+    <title>园客音频网</title>
     <style>
+/* 新增CSS样式 */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+}
+
+.badge {
+    background: rgba(0,255,136,0.1);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    border: 1px solid var(--neon-primary);
+    font-size: 0.9em;
+    color: var(--neon-primary);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.contact-item:hover {
+    background: rgba(255,255,255,0.03);
+}
+
+.icon {
+    font-size: 1.4em;
+    filter: drop-shadow(0 0 5px var(--neon-primary));
+}
+
+.label {
+    opacity: 0.8;
+}
+
+.value {
+    color: var(--neon-primary);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-section, .contact-info {
+        text-align: center;
+    }
+    
+    .contact-item {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
         /* 新增下载按钮样式 */
         .download-btn {
             position: relative;
@@ -278,6 +338,7 @@
     <nav>
         <div class="nav-links">
             <a href="#home" class="active">首页</a>
+            <a href="#contact">联系调音</a>
             <a href="#plugins">资源区</a>
         </div>
     </nav>
@@ -285,23 +346,56 @@
     <main>
         <section class="hero-section" id="home">
             <div class="quote-container">
-                <h1 class="quote" style="animation-delay: 0.2s">「 方便自己的小破站 」</h1>
+                <h1 class="quote" style="animation-delay: 0.2s">「 方便调音的小破站 - 园客音频网 」</h1>
             </div>
         </section>
+    <section id="contact" style="padding: 4rem 2rem;">
+        <div class="grid-container">
+            <div class="card" style="grid-column: 1 / -1; padding: 3rem;">
+                <div class="contact-wrapper">
+                    <div class="profile-section">
+                        <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; background: linear-gradient(45deg, var(--neon-primary), var(--neon-secondary)); -webkit-background-clip: text; color: transparent;">
+                              园客音频服务项目
+                        </h2>
+                        <p style="opacity: 0.9; line-height: 1.8;">
+                              声卡调试，混音，定制机架安装包封装服务等...<br>
+                        </p>
+                        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <div class="badge">机架调试</div>
+                            <div class="badge">驱动安装</div>
+                            <div class="badge">作品混音</div>
+                            <div class="badge">作品修音</div>                       </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--neon-primary);">调音师联系方式：</h3>
+
+                        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <div class="badge">园客音频 - 嘉博<p>微信：ACXMango</p></div>
+                            <div class="badge">园客音频 - 难赴<p>微信：ptbdd5201314</p> </div>                    </div>
+                        <div style="margin-top: 2rem; padding: 1rem; background: rgba(0,255,136,0.05); border-radius: 8px;">
+                            <small style="opacity: 0.7;">添加微信，请备注「 音频调试 」！</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<br><br><br><br>
 
         <section id="plugins">
             <div class="grid-container">
                 <div class="card">
-                    <h2>各声卡驱动</h2>
-                    <a href="https://www.123865.com/s/44I1jv-omwhd"><button class="download-btn">立即下载</button></a>
+                    <h2>声卡驱动集合</h2>
+                    <a href="https://www.123865.com/s/44I1jv-F4whd"><button class="download-btn">123 网盘线路访问</button></a>
                 </div>
                 <div class="card">
-                    <h2>调音师工具箱</h2>
-                    <a href="https://www.123865.com/s/44I1jv-mmwhd"><button class="download-btn">立即下载</button></a>
+                    <h2>杂项资源</h2>
+                    <a href="https://www.123865.com/s/44I1jv-Y4whd"><button class="download-btn">123 网盘线路访问</button></a>
                 </div>
                 <div class="card">
-                    <h2>杂项</h2>
-                    <a href="https://www.123865.com/s/44I1jv-1mwhd"><button class="download-btn">立即下载</button></a>
+                    <h2>待开发...</h2>
                 </div>
             </div>
         </section>
