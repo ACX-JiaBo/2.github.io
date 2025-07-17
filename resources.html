@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>园客音频小破站 - 资源下载</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#36D399',
+            dark: '#1E293B',
+            light: '#F8FAFC'
+          },
+          fontFamily: {
+            inter: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .backdrop-blur-xl {
+        backdrop-filter: blur(20px);
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+  <!-- 顶部导航 -->
+  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="navbar">
+    <div class="relative bg-dark/80 backdrop-blur-xl">
+      <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="index.html" class="text-2xl font-bold text-white flex items-center space-x-2">
+          <i class="fa fa-headphones text-primary"></i>
+          <span>园客音频</span>
+        </a>
+        
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-white hover:text-primary transition-colors font-medium">主页</a>
+          <a href="resources.html" class="text-white hover:text-primary transition-colors font-medium">资源下载</a>
+          <a href="index.html#contact" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg transition-all hover:shadow-lg">联系我们</a>
+        </nav>
+        
+        <button class="md:hidden text-white text-2xl" id="menu-toggle">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- 移动端菜单 -->
+    <div class="md:hidden bg-dark/95 backdrop-blur-xl hidden" id="mobile-menu">
+      <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <a href="index.html" class="text-white hover:text-primary transition-colors font-medium py-2">主页</a>
+        <a href="resources.html" class="text-white hover:text-primary transition-colors font-medium py-2">资源下载</a>
+        <a href="index.html#contact" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg transition-all text-center">联系我们</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主内容 -->
+  <main class="pt-24 pb-16">
+    <!-- 英雄区域 -->
+    <section class="relative bg-gradient-to-br from-dark to-primary/80 py-20 md:py-32 overflow-hidden">
+      <div class="absolute inset-0 opacity-20">
+        <div class="absolute inset-0 bg-[url('https://picsum.photos/id/1059/1920/1080')] bg-cover bg-center"></div>
+      </div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white mb-6 leading-tight text-shadow">
+            资源库
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- 资源分类 -->
+    <section class="py-16 bg-light">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4">资源分类</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <a href="#plugins" class="bg-white rounded-xl shadow-lg p-6 flex items-center space-x-4 hover-scale">
+            <div class="bg-primary/10 p-4 rounded-full text-primary">
+              <i class="fa fa-plug text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">杂项</h3>
+            </div>
+          </a>
+          
+          <a href="#software" class="bg-white rounded-xl shadow-lg p-6 flex items-center space-x-4 hover-scale">
+            <div class="bg-secondary/10 p-4 rounded-full text-secondary">
+              <i class="fa fa-download text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">远程软件</h3>
+            </div>
+          </a>
+          
+          <a href="#samples" class="bg-white rounded-xl shadow-lg p-6 flex items-center space-x-4 hover-scale">
+            <div class="bg-primary/10 p-4 rounded-full text-primary">
+              <i class="fa fa-music text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">驱动</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 音频插件 -->
+    <section id="plugins" class="py-16 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4">杂项</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- 插件1 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="h-48 overflow-hidden">
+              <img src="https://picsum.photos/id/180/600/400" alt="EQ插件界面截图" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-dark">更多</h3>
+              </div>
+              <p class="text-gray-600 mb-4">宿主安装包、插件包、调音工具箱、音效助手、电音助手。</p>
+              <div class="flex justify-between items-center">
+                <a href="https://www.123865.com/s/44I1jv-Y4whd" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all">
+                  下载
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 插件2 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="h-48 overflow-hidden">
+              <img src="https://picsum.photos/id/160/600/400" alt="压缩器插件界面截图" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-dark">Ultimate Compressor</h3>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">动态处理器</span>
+              </div>
+              <p class="text-gray-600 mb-4">多功能压缩器，提供精确的动态控制，适合人声、乐器和总线处理</p>
+              <div class="flex justify-between items-center">
+              </div>
+            </div>
+          </div>
+
+          <!-- 插件3 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="h-48 overflow-hidden">
+              <img src="https://picsum.photos/id/164/600/400" alt="混响插件界面截图" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-dark">Ambience Reverb</h3>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">混响效果器</span>
+              </div>
+              <p class="text-gray-600 mb-4">自然逼真的混响效果器，提供多种空间模拟和预设，为您的音频添加深度和空间感</p>
+              <div class="flex justify-between items-center">
+              </div>
+            </div>
+          </div>
+
+          <!-- 插件4 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="h-48 overflow-hidden">
+              <img src="https://picsum.photos/id/167/600/400" alt="降噪插件界面截图" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-dark">Noise Reduction Pro</h3>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">降噪工具</span>
+              </div>
+              <p class="text-gray-600 mb-4">专业级降噪工具，有效去除录音中的背景噪音，同时保留原始音频的自然特性</p>
+              <div class="flex justify-between items-center">
+              </div>
+            </div>
+          </div>
+
+          <!-- 插件5 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="h-48 overflow-hidden">
+              <img src="https://picsum.photos/id/177/600/400" alt="人声增强插件界面截图" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-dark">Voice Enhancer</h3>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">人声处理器</span>
+              </div>
+              <p class="text-gray-600 mb-4">专门为人声设计的处理插件，提供清晰度增强、音调修正和动态优化等功能</p>
+              <div class="flex justify-between items-center">
+              </div>
+            </div>
+          </div>
+
+          <!-- 插件6 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="h-48 overflow-hidden">
+              <img src="https://picsum.photos/id/179/600/400" alt="母带处理插件界面截图" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-dark">Mastering Suite</h3>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">母带处理工具</span>
+              </div>
+              <p class="text-gray-600 mb-4">完整的母带处理工具集，帮助您为音乐作品添加专业级的最终润色</p>
+              <div class="flex justify-between items-center">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 远程协作软件 -->
+    <section id="software" class="py-16 bg-light">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4">远程软件</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- 软件1 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-dark">向日葵</h3>
+                <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">推荐</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Windows</span>
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Mac</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <a href="https://sunlogin.oray.com/download?categ=personal&sys=windows&ici=sunlogin_navigation" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all">
+                  跳转官网下载
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 软件2 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-dark">Todesk</h3>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Windows</span>
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Mac</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <a href="https://www.todesk.com/download.html" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all">
+                  跳转官网下载
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 音频样本库 -->
+    <section id="samples" class="py-16 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4">声卡驱动</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- 样本库1 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-dark">各声卡老旧驱动库</h3>
+              </div>
+              <div class="flex justify-between items-center">
+                <a href="https://www.123865.com/s/44I1jv-F4whd" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all">
+                  下载
+                </a>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 下载说明 -->
+    <section class="py-16 bg-light">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-dark mb-6 text-center"> 联系技术支持</h3>
+          
+          <div class="text-center">
+            <a href="index.html#contact" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-all hover:shadow-lg">
+              点击微信扫码
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white">
+    <div class="container mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">园客音频</h3>
+          <p class="text-gray-400 mb-4">音频制作、混音和后期处理、声卡调试服务团队</p>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">快速链接</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">主页</a></li>
+            <li><a href="resources.html" class="text-gray-400 hover:text-white transition-colors">资源下载</a></li>
+            <li><a href="#engineers" class="text-gray-400 hover:text-white transition-colors">关于团队</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">服务项目</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">音乐制作</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">混音工程</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">声卡调试</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">联系方式</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center text-gray-400"><i class="fa fa-map-marker mr-2"></i> 广东省揭阳市揭东区</li>
+            <li class="flex items-center text-gray-400"><i class="fa fa-phone mr-2"></i> +86 13417696831</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+        <p>&copy; 2025-永久 园客音频. 保留所有权利.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-dark/95', 'shadow-lg');
+        navbar.classList.remove('bg-dark/80');
+      } else {
+        navbar.classList.remove('bg-dark/95', 'shadow-lg');
+        navbar.classList.add('bg-dark/80');
+      }
+    });
+
+    // 移动端菜单切换
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          // 关闭移动菜单（如果打开）
+          document.getElementById('mobile-menu').classList.add('hidden');
+          
+          // 滚动到目标位置
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+    

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>园客音频小破站 - 主页</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#36D399',
+            dark: '#1E293B',
+            light: '#F8FAFC'
+          },
+          fontFamily: {
+            inter: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .backdrop-blur-xl {
+        backdrop-filter: blur(20px);
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+  <!-- 顶部导航 -->
+  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="navbar">
+    <div class="relative bg-dark/80 backdrop-blur-xl">
+      <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="index.html" class="text-2xl font-bold text-white flex items-center space-x-2">
+          <i class="fa fa-headphones text-primary"></i>
+          <span>园客音频</span>
+        </a>
+        
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-white hover:text-primary transition-colors font-medium">主页</a>
+          <a href="resources.html" class="text-white hover:text-primary transition-colors font-medium">资源下载</a>
+          <a href="#contact" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg transition-all hover:shadow-lg">联系我们</a>
+        </nav>
+        
+        <button class="md:hidden text-white text-2xl" id="menu-toggle">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- 移动端菜单 -->
+    <div class="md:hidden bg-dark/95 backdrop-blur-xl hidden" id="mobile-menu">
+      <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <a href="index.html" class="text-white hover:text-primary transition-colors font-medium py-2">主页</a>
+        <a href="resources.html" class="text-white hover:text-primary transition-colors font-medium py-2">资源下载</a>
+        <a href="#contact" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg transition-all text-center">联系我们</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主内容 -->
+  <main class="pt-24 pb-16">
+    <!-- 区域 -->
+    <section class="relative bg-gradient-to-br from-dark to-primary/80 py-20 md:py-32 overflow-hidden">
+      <div class="absolute inset-0 opacity-20">
+        <div class="absolute inset-0 bg-[url('https://picsum.photos/id/1076/1920/1080')] bg-cover bg-center"></div>
+      </div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white mb-6 leading-tight text-shadow">
+            园客音频服务团队
+          </h1>
+          <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 mb-8">
+            为您提供高质量的音频混音、修音，声卡调试等服务
+          </p>
+          <a href="#engineers" class="inline-block bg-white text-primary hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all hover:shadow-lg">
+            了解我们
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 调音师介绍 -->
+    <section id="engineers" class="py-16 bg-light">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4">不敢说多专业，但肯定认真且负责的团队</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">多年行业服务经验</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- 调音师1 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="h-64 overflow-hidden">
+              <img src="https://youke1.picui.cn/s1/2025/07/17/6878c8fb47075.png" alt="照片" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-dark mb-2">嘉博</h3>
+              <p class="text-primary font-medium mb-3">首席调音师</p>
+              <p class="text-gray-600 mb-4">擅长流行音乐混音、修音、母带处理以及声卡调试等服务</p>
+              <div class="flex items-center space-x-4 text-gray-500">
+                <i class="fa fa-weixin text-xl"></i>ACXMango
+                <i class="fa fa-phone text-xl"></i>13417696831
+              </div>
+            </div>
+          </div>
+
+          <!-- 调音师2 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="h-64 overflow-hidden">
+              <img src="https://picsum.photos/id/1000/600/400" alt="照片" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-dark mb-2">李华</h3>
+              <p class="text-primary font-medium mb-3">录音工程师</p>
+              <p class="text-gray-600 mb-4">擅长人声和乐器处理</p>
+              <div class="flex items-center space-x-4 text-gray-500">
+                【沉淀中，暂不接单】
+              </div>
+            </div>
+          </div>
+
+          <!-- 调音师3 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale">
+            <div class="h-64 overflow-hidden">
+              <img src="https://img95.699pic.com/photo/50170/4651.jpg_wh860.jpg" alt="照片" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-dark mb-2">王芳</h3>
+              <p class="text-primary font-medium mb-3">音效设计师</p>
+              <p class="text-gray-600 mb-4">擅长环境音效和特殊音效设计</p>
+              <div class="flex items-center space-x-4 text-gray-500">
+                【沉淀中，暂不接单】
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-16 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4">联系我们</h2>
+          
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <h3 class="text-xl font-bold text-dark mb-6">联系方式</h3>
+            
+            <div class="space-y-4">
+              <div class="flex items-start space-x-4">
+                <div class="bg-primary/10 p-3 rounded-full text-primary">
+                  <i class="fa fa-map-marker"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium text-dark">地址</h4>
+                  <p class="text-gray-600">广东省揭阳市揭东区</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="bg-primary/10 p-3 rounded-full text-primary">
+                  <i class="fa fa-phone"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium text-dark">电话</h4>
+                  <p class="text-gray-600">+86 13417696831</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="bg-primary/10 p-3 rounded-full text-primary">
+                  <i class="fa fa-weixin"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium text-dark">微信</h4>
+                  <p class="text-gray-600">园客音频 - 嘉博</p>
+                  <div class="mt-2">
+                    <img src="https://youke1.picui.cn/s1/2025/07/17/6878c9f15105f.png" alt="微信二维码" class="w-40 h-40 object-cover rounded-lg border-2 border-gray-200">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white">
+    <div class="container mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">园客音频</h3>
+          <p class="text-gray-400 mb-4">音频制作、混音和后期处理、声卡调试服务团队</p>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">快速链接</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">主页</a></li>
+            <li><a href="resources.html" class="text-gray-400 hover:text-white transition-colors">资源下载</a></li>
+            <li><a href="#engineers" class="text-gray-400 hover:text-white transition-colors">关于团队</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">服务项目</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">音乐制作</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">混音工程</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">声卡调试</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">联系方式</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center text-gray-400"><i class="fa fa-map-marker mr-2"></i> 广东省揭阳市揭东区</li>
+            <li class="flex items-center text-gray-400"><i class="fa fa-phone mr-2"></i> +86 13417696831</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+        <p>&copy; 2025-永久 园客音频. 保留所有权利.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-dark/95', 'shadow-lg');
+        navbar.classList.remove('bg-dark/80');
+      } else {
+        navbar.classList.remove('bg-dark/95', 'shadow-lg');
+        navbar.classList.add('bg-dark/80');
+      }
+    });
+
+    // 移动端菜单切换
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          // 关闭移动菜单（如果打开）
+          document.getElementById('mobile-menu').classList.add('hidden');
+          
+          // 滚动到目标位置
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+    
